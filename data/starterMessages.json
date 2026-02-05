@@ -1,0 +1,79 @@
+{
+  "starterMessages": [
+    {
+      "text": "🎉 Congratulations! You've won a FREE iPhone! Click here to claim now!",
+      "category": "spam"
+    },
+    {
+      "text": "Hi, can we reschedule tomorrow's class to 3 PM?",
+      "category": "normal"
+    },
+    {
+      "text": "URGENT: Your account will be suspended. Verify now at bit.ly/verify123",
+      "category": "spam"
+    },
+    {
+      "text": "The homework is due on Friday. Let me know if you have questions.",
+      "category": "normal"
+    },
+    {
+      "text": "Limited time offer! Buy now and get 90% discount!!!",
+      "category": "spam"
+    },
+    {
+      "text": "Thanks for your help with the project yesterday!",
+      "category": "normal"
+    },
+    {
+      "text": "Click this link to claim your prize money NOW!",
+      "category": "spam"
+    },
+    {
+      "text": "The library will be closed this weekend for maintenance.",
+      "category": "normal"
+    },
+    {
+      "text": "You have been selected for a special reward! Act fast!",
+      "category": "spam"
+    },
+    {
+      "text": "Can you send me the notes from today's lecture?",
+      "category": "normal"
+    },
+    {
+      "text": "WINNER WINNER! You're our millionth visitor! Claim prize!",
+      "category": "spam"
+    },
+    {
+      "text": "Meeting rescheduled to Room 204 at 2:30 PM.",
+      "category": "normal"
+    }
+  ],
+  
+  "testMessages": [
+    {
+      "text": "FREE GIFT for you! Limited time only!!!",
+      "category": "spam"
+    },
+    {
+      "text": "Your package has been delivered to the front desk.",
+      "category": "normal"
+    },
+    {
+      "text": "Act now! This offer expires in 24 hours!",
+      "category": "spam"
+    },
+    {
+      "text": "Reminder: Parent-teacher conference is next Monday.",
+      "category": "normal"
+    },
+    {
+      "text": "You can win this scholarship competition with your essay.",
+      "category": "normal"
+    },
+    {
+      "text": "CONGRATULATIONS WINNER! Click to claim $10,000!!!",
+      "category": "spam"
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard | AI Spam Lab</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Admin Header -->
+    <div class="admin-header">
+      <h1>🧑‍🏫 Teacher Dashboard</h1>
+      <p>Control student progress and unlock workshop hours</p>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Hour Control Grid -->
+    <div class="admin-grid">
+      <!-- Hour 1 -->
+      <div class="admin-card">
+        <h3>🟢 Hour 1: Human Thinking</h3>
+        <span class="status-badge unlocked">Always Unlocked</span>
+        <p style="margin-top: 12px; color: #64748b;">
+          <strong>Activities 1-3:</strong> Students learn pattern recognition, keyword detection, and why simple rules fail.
+        </p>
+      </div>
+
+      <!-- Hour 2 -->
+      <div class="admin-card">
+        <h3>🔵 Hour 2: Machine Perception</h3>
+        <span class="status-badge" id="hour2-status">Locked</span>
+        
+        <div class="unlock-section">
+          <p><strong>Unlock Code for Students:</strong></p>
+          <div class="unlock-code" id="hour2-code">MACHINE-SIGHT</div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <button class="unlock-btn locked" id="unlock-hour2" onclick="unlockHour(2)">
+              🔓 Unlock Hour 2
+            </button>
+            <button class="lock-btn" id="lock-hour2" onclick="lockHour(2)" style="display: none;">
+              🔒 Lock Hour 2
+            </button>
+          </div>
+        </div>
+        
+        <p style="margin-top: 16px; color: #64748b; font-size: 0.9rem;">
+          <strong>Activities 4-6:</strong> Students create training data, learn tokenization, and understand how AI converts text to numbers.
+        </p>
+      </div>
+
+      <!-- Hour 3 -->
+      <div class="admin-card">
+        <h3>🟡 Hour 3: Probability Math</h3>
+        <span class="status-badge" id="hour3-status">Locked</span>
+        
+        <div class="unlock-section">
+          <p><strong>Unlock Code for Students:</strong></p>
+          <div class="unlock-code" id="hour3-code">PROBABILITY-MATH</div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <button class="unlock-btn locked" id="unlock-hour3" onclick="unlockHour(3)">
+              🔓 Unlock Hour 3
+            </button>
+            <button class="lock-btn" id="lock-hour3" onclick="lockHour(3)" style="display: none;">
+              🔒 Lock Hour 3
+            </button>
+          </div>
+        </div>
+        
+        <p style="margin-top: 16px; color: #64748b; font-size: 0.9rem;">
+          <strong>Activities 7-10:</strong> Students train models, see probabilistic outputs, and learn model interpretability.
+        </p>
+      </div>
+
+      <!-- Hour 4 -->
+      <div class="admin-card">
+        <h3>🟣 Hour 4: Bias & Ethics</h3>
+        <span class="status-badge" id="hour4-status">Locked</span>
+        
+        <div class="unlock-section">
+          <p><strong>Unlock Code for Students:</strong></p>
+          <div class="unlock-code" id="hour4-code">BIAS-ETHICS</div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <button class="unlock-btn locked" id="unlock-hour4" onclick="unlockHour(4)">
+              🔓 Unlock Hour 4
+            </button>
+            <button class="lock-btn" id="lock-hour4" onclick="lockHour(4)" style="display: none;">
+              🔒 Lock Hour 4
+            </button>
+          </div>
+        </div>
+        
+        <p style="margin-top: 16px; color: #64748b; font-size: 0.9rem;">
+          <strong>Activities 11-13:</strong> Students intentionally break the AI, explore bias, and discuss ethical responsibility.
+        </p>
+      </div>
+    </div>
+
+    <!-- Teacher Insights -->
+    <div class="insights-section">
+      <h2>📚 Teaching Tips</h2>
+      
+      <div class="insight-item">
+        <h3>🎯 Core Philosophy</h3>
+        <p>This workshop is designed so students <strong>experience</strong> AI concepts before learning terminology. Don't explain concepts upfront — let discovery happen naturally through activities.</p>
+      </div>
+
+      <div class="insight-item">
+        <h3>⏱️ Pacing Strategy</h3>
+        <p>Each hour builds on the previous one. <strong>Don't skip hours.</strong> The progression is deliberate:</p>
+        <ul style="margin-left: 20px; margin-top: 8px; color: #475569;">
+          <li><strong>Hour 1 (Activities 1-3):</strong> Builds confidence through pattern recognition</li>
+          <li><strong>Hour 2 (Activities 4-6):</strong> Destroys misconception that AI "understands"</li>
+          <li><strong>Hour 3 (Activities 7-10):</strong> Introduces probabilistic thinking</li>
+          <li><strong>Hour 4 (Activities 11-13):</strong> Develops critical thinking about AI limitations</li>
+        </ul>
+      </div>
+
+      <div class="insight-item">
+        <h3>💬 Discussion Prompts</h3>
+        <p><strong>After Hour 1:</strong> "How was your thinking similar to how AI works?"</p>
+        <p><strong>After Hour 2:</strong> "Why can't AI understand jokes or sarcasm?"</p>
+        <p><strong>After Hour 3:</strong> "Should we trust AI that's 85% confident?"</p>
+        <p><strong>After Hour 4:</strong> "Who's responsible when AI makes a mistake?"</p>
+      </div>
+
+      <div class="insight-item">
+        <h3>🔑 Success Indicators</h3>
+        <p>By the end, students should be able to explain:</p>
+        <ul style="margin-left: 20px; margin-top: 8px; color: #475569;">
+          <li>AI learns from patterns in training data</li>
+          <li>AI doesn't "understand" — it processes numbers</li>
+          <li>AI gives probabilities, not absolute answers</li>
+          <li>Bias in data leads to biased AI</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { requireAdmin, adminLogout } from '../js/admin/auth.js';
+    import { getUnlockedHour, unlockSpecificHour, lockHour as lockHourFunc } from '../js/core/unlock.js';
+
+    // Check authentication
+    requireAdmin();
+
+    // Update UI based on current state
+    function updateStatus() {
+      const unlockedHour = getUnlockedHour();
+      
+      for (let i = 2; i <= 4; i++) {
+        const statusBadge = document.getElementById(`hour${i}-status`);
+        const unlockBtn = document.getElementById(`unlock-hour${i}`);
+        const lockBtn = document.getElementById(`lock-hour${i}`);
+        
+        if (i <= unlockedHour) {
+          // Hour is unlocked
+          statusBadge.textContent = 'Unlocked';
+          statusBadge.classList.remove('locked');
+          statusBadge.classList.add('unlocked');
+          
+          unlockBtn.style.display = 'none';
+          lockBtn.style.display = 'block';
+        } else {
+          // Hour is locked
+          statusBadge.textContent = 'Locked';
+          statusBadge.classList.remove('unlocked');
+          statusBadge.classList.add('locked');
+          
+          unlockBtn.style.display = 'block';
+          lockBtn.style.display = 'none';
+        }
+      }
+    }
+
+    // Unlock hour function
+    window.unlockHour = function(hour) {
+      const currentUnlocked = getUnlockedHour();
+      
+      if (hour <= currentUnlocked) {
+        alert(`Hour ${hour} is already unlocked!`);
+        return;
+      }
+      
+      if (hour > currentUnlocked + 1) {
+        alert(`Please unlock Hour ${hour-1} first. Hours must be unlocked in sequence.`);
+        return;
+      }
+      
+      if (confirm(`Unlock Hour ${hour} for all students?`)) {
+        unlockSpecificHour(hour);
+        updateStatus();
+        alert(`✅ Hour ${hour} is now unlocked! Share the code with students.`);
+      }
+    };
+
+    // Lock hour function
+    window.lockHour = function(hour) {
+      if (confirm(`Lock Hour ${hour}? This will also lock all hours after it.`)) {
+        lockHourFunc(hour);
+        updateStatus();
+        alert(`🔒 Hour ${hour} and all subsequent hours are now locked.`);
+      }
+    };
+
+    // Logout function
+    window.logout = function() {
+      if (confirm('Are you sure you want to logout?')) {
+        adminLogout();
+      }
+    };
+
+    // Initialize
+    updateStatus();
+  </script>
+</body>
+</html>

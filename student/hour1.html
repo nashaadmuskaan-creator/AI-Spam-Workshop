@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hour 1: Human Thinking | AI Spam Lab</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/student.css">
+</head>
+
+<body class="hour-1">
+  <!-- Navigation -->
+  <div class="hour-nav">
+    <div class="hour-nav-content">
+      <div class="hour-tabs">
+        <div class="hour-tab active">Hour 1</div>
+        <div class="hour-tab locked" onclick="checkHourUnlock(2)">Hour 2</div>
+        <div class="hour-tab locked" onclick="checkHourUnlock(3)">Hour 3</div>
+        <div class="hour-tab locked" onclick="checkHourUnlock(4)">Hour 4</div>
+      </div>
+      
+      <button class="secondary-btn" onclick="window.location.href='../index.html'">
+        ← Home
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Hour Header -->
+    <div class="card" style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); border: none;">
+      <span class="hour-badge">Hour 1</span>
+      <h1>🔍 Human Thinking → AI Patterns</h1>
+      <p style="font-size: 1.1rem; color: #065f46;">
+        Learn how you already think like AI by recognizing patterns in messages.
+      </p>
+    </div>
+
+    <!-- Activity 1: Human Detective -->
+    <section class="card activity-section" id="activity-1">
+      <div class="activity-header">
+        <div class="activity-number">1</div>
+        <div class="activity-title">
+          <h2>Spam Detective</h2>
+          <p>Classify messages using only your human judgment</p>
+        </div>
+      </div>
+      
+      <div id="activity-1-content"></div>
+    </section>
+
+    <!-- Activity 2: Keyword Discovery -->
+    <section class="card activity-section hidden" id="activity-2">
+      <div class="activity-header">
+        <div class="activity-number">2</div>
+        <div class="activity-title">
+          <h2>Keyword Radar</h2>
+          <p>Discover which words increase spam probability</p>
+        </div>
+      </div>
+      
+      <div id="activity-2-content"></div>
+    </section>
+
+    <!-- Activity 3: Why Rules Fail -->
+    <section class="card activity-section hidden" id="activity-3">
+      <div class="activity-header">
+        <div class="activity-number">3</div>
+        <div class="activity-title">
+          <h2>When Rules Break</h2>
+          <p>See why simple rules don't work for complex problems</p>
+        </div>
+      </div>
+      
+      <div id="activity-3-content"></div>
+    </section>
+
+    <!-- Hour Completion Message -->
+    <div class="card hidden" id="hour-complete" style="text-align: center; padding: 60px 40px; background: linear-gradient(135deg, #d1fae5, #a7f3d0);">
+      <h2 style="font-size: 2.5rem; margin-bottom: 20px;">🎉</h2>
+      <h2>Hour 1 Complete!</h2>
+      <p style="font-size: 1.1rem; color: #065f46; margin: 16px 0;">
+        You've learned how AI thinking begins with human pattern recognition.
+      </p>
+      <p style="color: #064e3b; font-weight: 600; margin-top: 24px;">
+        Ask your teacher for the Hour 2 unlock code to continue!
+      </p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initActivity1 } from '../js/activities/a01_detective.js';
+    import { initActivity2 } from '../js/activities/a02_keywords.js';
+    import { initActivity3 } from '../js/activities/a03_rules.js';
+    import { isHourUnlocked } from '../js/core/unlock.js';
+
+    // Initialize first activity
+    initActivity1(document.getElementById('activity-1-content'));
+
+    // Listen for activity completions
+    document.addEventListener('activityComplete', (e) => {
+      const completedActivity = e.detail.activity;
+      
+      if (completedActivity === 1) {
+        const activity2 = document.getElementById('activity-2');
+        activity2.classList.remove('hidden');
+        activity2.classList.add('fade-in');
+        initActivity2(document.getElementById('activity-2-content'));
+      } else if (completedActivity === 2) {
+        const activity3 = document.getElementById('activity-3');
+        activity3.classList.remove('hidden');
+        activity3.classList.add('fade-in');
+        initActivity3(document.getElementById('activity-3-content'));
+      } else if (completedActivity === 3) {
+        // Show hour completion message
+        const completeMsg = document.getElementById('hour-complete');
+        completeMsg.classList.remove('hidden');
+        completeMsg.classList.add('fade-in');
+        completeMsg.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Check hour unlock
+    window.checkHourUnlock = function(hour) {
+      if (isHourUnlocked(hour)) {
+        window.location.href = `hour${hour}.html`;
+      } else {
+        alert(`⚠️ Hour ${hour} is locked. Your teacher will provide an unlock code when it's time.`);
+      }
+    };
+  </script>
+</body>
+</html>

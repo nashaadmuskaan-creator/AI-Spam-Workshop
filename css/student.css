@@ -1,0 +1,220 @@
+/* Student Interface Styles */
+
+.hour-nav {
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  z-index: 100;
+  margin-bottom: 32px;
+  border-radius: 0 0 20px 20px;
+}
+
+.hour-nav-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.hour-tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.hour-tab {
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  color: #64748b;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.hour-tab.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.hour-tab.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.activity-section {
+  margin-bottom: 48px;
+  opacity: 1;
+}
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.activity-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.activity-title {
+  flex: 1;
+}
+
+.activity-title h2 {
+  margin-bottom: 4px;
+}
+
+.activity-title p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+.think-prompt {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-left: 5px solid #f59e0b;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.think-prompt::before {
+  content: "🤔 THINK FIRST";
+  display: block;
+  font-weight: bold;
+  color: #b45309;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.interaction-area {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 28px;
+  margin: 20px 0;
+}
+
+.result-reveal {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  border-left: 5px solid #3b82f6;
+  padding: 24px;
+  border-radius: 12px;
+  margin: 24px 0;
+}
+
+.result-reveal::before {
+  content: "👀 SEE WHAT HAPPENS";
+  display: block;
+  font-weight: bold;
+  color: #1e40af;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.message-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.input-group {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.input-group input {
+  flex: 1;
+}
+
+.keyword-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+  min-height: 60px;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+  border: 2px dashed #e2e8f0;
+}
+
+.empty-state {
+  width: 100%;
+  text-align: center;
+  color: #94a3b8;
+  padding: 20px;
+  font-style: italic;
+}
+
+.probability-display {
+  text-align: center;
+  padding: 32px;
+  background: white;
+  border-radius: 16px;
+  margin: 24px 0;
+}
+
+.probability-number {
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--accent);
+  margin: 16px 0;
+}
+
+.probability-label {
+  font-size: 1.2rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+mark {
+  background: #fef3c7;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+  .choice-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hour-tabs {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hour-nav-content {
+    flex-direction: column;
+  }
+  
+  .activity-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}

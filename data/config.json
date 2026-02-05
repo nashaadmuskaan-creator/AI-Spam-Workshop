@@ -1,0 +1,9 @@
+{
+  "unlockCodes": {
+    "2": "MACHINE-SIGHT",
+    "3": "PROBABILITY-MATH",
+    "4": "BIAS-ETHICS"
+  },
+  "defaultUnlockedHour": 1,
+  "teacherPassword": "teachAI2026"
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Spam Detective Lab</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <style>
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      background: linear-gradient(135deg, #10b981, #06b6d4, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .hero .tagline {
+      font-size: 1.3rem;
+      color: #64748b;
+      margin-bottom: 50px;
+    }
+
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 50px;
+    }
+
+    .mode-card {
+      border-radius: 24px;
+      padding: 40px 32px;
+      background: white;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+    }
+
+    .mode-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+      border-color: #10b981;
+    }
+
+    .mode-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+    }
+
+    .mode-card h2 {
+      color: #1e293b;
+      margin-bottom: 12px;
+      font-size: 1.8rem;
+    }
+
+    .mode-card p {
+      color: #64748b;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .teacher-input {
+      width: 100%;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+
+    .start-btn {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(16,185,129,0.3);
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .start-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 14px 35px rgba(16,185,129,0.4);
+    }
+
+    .teacher-btn {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      box-shadow: 0 10px 25px rgba(139,92,246,0.3);
+    }
+
+    .teacher-btn:hover {
+      box-shadow: 0 14px 35px rgba(139,92,246,0.4);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container hero">
+    <h1>🧠 AI Spam Detective Lab</h1>
+    <p class="tagline">Understand AI by Building It</p>
+
+    <div class="mode-grid">
+      <!-- STUDENT MODE -->
+      <div class="mode-card">
+        <div class="mode-icon">🔬</div>
+        <h2>Student Mode</h2>
+        <p>Think like a detective. Spot patterns. Become the AI through hands-on experiments.</p>
+        <button class="start-btn" onclick="startStudent()">Start Learning</button>
+      </div>
+
+      <!-- TEACHER MODE -->
+      <div class="mode-card">
+        <div class="mode-icon">🧑‍🏫</div>
+        <h2>Teacher Mode</h2>
+        <p>Control classroom pacing. Unlock activities. Guide student discovery.</p>
+        
+        <input
+          class="teacher-input"
+          type="password"
+          id="adminPass"
+          placeholder="Enter teacher password"
+          onkeypress="if(event.key==='Enter') login()"
+        >
+        <button class="start-btn teacher-btn" onclick="login()">Access Dashboard</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { adminLogin } from "./js/admin/auth.js";
+
+    window.login = () => {
+      const pass = document.getElementById("adminPass").value;
+      if (!pass) {
+        alert("⚠️ Please enter the teacher password");
+        return;
+      }
+      adminLogin(pass);
+    };
+
+    window.startStudent = () => {
+      window.location.href = "student/hour1.html";
+    };
+  </script>
+</body>
+</html>
