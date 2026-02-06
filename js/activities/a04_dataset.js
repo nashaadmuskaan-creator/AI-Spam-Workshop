@@ -144,10 +144,16 @@ function renderDataList(type) {
   return state.dataset[type]
     .map((item, idx) => `
       <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem;">
-        <strong>${idx + 1}.</strong> ${item.text}
+        <strong>${idx + 1}.</strong> ${escapeHtml(item.text)}
       </div>
     `)
     .join('');
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 function showUnderstanding(container) {
@@ -167,9 +173,9 @@ function showUnderstanding(container) {
         <div style="margin: 20px 0;">
           <p style="font-weight: 600; margin-bottom: 8px;">What you just created:</p>
           <ul style="margin: 8px 0; padding-left: 20px; color: #475569;">
-            <li><strong>Labeled data</strong> - Each example is marked as spam or normal</li>
-            <li><strong>Diverse examples</strong> - Different types of spam and normal messages</li>
-            <li><strong>Training set</strong> - The foundation the AI will learn from</li>
+            <li><strong>Labeled data</strong> — Each example is marked as spam or normal</li>
+            <li><strong>Diverse examples</strong> — Different types of spam and normal messages</li>
+            <li><strong>Training set</strong> — The foundation the AI will learn from</li>
           </ul>
         </div>
         
@@ -185,10 +191,15 @@ function showUnderstanding(container) {
         </div>
       </div>
       
-      <div style="text-align: center; margin-top: 24px; padding: 20px; background: linear-gradient(135deg, #d1fae5, #a7f3d0); border-radius: 12px;">
-        <p style="font-size: 1.3rem; font-weight: 700; color: #065f46; margin-bottom: 8px;">🎉 Hour 1 Complete!</p>
-        <p style="color: #065f46;">You've learned how AI thinking begins with human pattern recognition.</p>
-      </div>
+      <button class="primary-btn" id="continue-to-5" style="margin-top: 24px; width: 100%;">
+        Continue to Activity 5 →
+      </button>
     </div>
   `;
+
+  // Add event listener for continue button
+  container.querySelector('#continue-to-5').addEventListener('click', () => {
+    const event = new CustomEvent('activityComplete', { detail: { activity: 4 } });
+    document.dispatchEvent(event);
+  });
 }

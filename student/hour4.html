@@ -36,18 +36,73 @@
       </p>
     </div>
 
-    <!-- Coming Soon Message -->
-    <div class="card" style="text-align: center; padding: 60px 40px;">
-      <h2 style="font-size: 2.5rem; margin-bottom: 20px;">🚧</h2>
-      <h2>Activities Coming Soon</h2>
-      <p style="font-size: 1.1rem; color: #64748b;">
-        Hour 4 activities are currently being developed. Check back soon to learn about AI limitations, bias, and ethical responsibility!
-      </p>
-    </div>
+    <!-- Activity 11: Explainability -->
+    <section class="card activity-section" id="activity-11">
+      <div class="activity-header">
+        <div class="activity-number">11</div>
+        <div class="activity-title">
+          <h2>Explaining the Decision</h2>
+          <p>Understand why AI made its classification</p>
+        </div>
+      </div>
+      
+      <div id="activity-11-content"></div>
+    </section>
+
+    <!-- Activity 12: Breaking the AI -->
+    <section class="card activity-section hidden" id="activity-12">
+      <div class="activity-header">
+        <div class="activity-number">12</div>
+        <div class="activity-title">
+          <h2>Breaking the AI</h2>
+          <p>Try to fool the spam detector with tricky messages</p>
+        </div>
+      </div>
+      
+      <div id="activity-12-content"></div>
+    </section>
+
+    <!-- Activity 13: Bias & Ethics -->
+    <section class="card activity-section hidden" id="activity-13">
+      <div class="activity-header">
+        <div class="activity-number">13</div>
+        <div class="activity-title">
+          <h2>Bias & Ethics</h2>
+          <p>Explore real ethical questions about AI responsibility</p>
+        </div>
+      </div>
+      
+      <div id="activity-13-content"></div>
+    </section>
   </div>
 
   <script type="module">
-    // Placeholder for Hour 4 activities
+    import { initActivity11 } from '../js/activities/a11_explain.js';
+    import { initActivity12 } from '../js/activities/a12_break.js';
+    import { initActivity13 } from '../js/activities/a13_improve.js';
+
+    // Initialize first activity of hour 4
+    initActivity11(document.getElementById('activity-11-content'));
+
+    // Listen for activity completions
+    document.addEventListener('activityComplete', (e) => {
+      const completedActivity = e.detail.activity;
+      
+      if (completedActivity === 11) {
+        const activity12 = document.getElementById('activity-12');
+        activity12.classList.remove('hidden');
+        activity12.classList.add('fade-in');
+        activity12.scrollIntoView({ behavior: 'smooth' });
+        initActivity12(document.getElementById('activity-12-content'));
+      } else if (completedActivity === 12) {
+        const activity13 = document.getElementById('activity-13');
+        activity13.classList.remove('hidden');
+        activity13.classList.add('fade-in');
+        activity13.scrollIntoView({ behavior: 'smooth' });
+        initActivity13(document.getElementById('activity-13-content'));
+      }
+      // Activity 13 handles its own completion and returns to home
+    });
   </script>
 </body>
 </html>

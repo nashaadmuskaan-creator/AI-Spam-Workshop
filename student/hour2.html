@@ -59,34 +59,7 @@
         </div>
       </div>
       
-      <div id="activity-5-content">
-        <div class="think-prompt">
-          How does a computer understand sentences? Can it read like you do?
-        </div>
-        
-        <div class="interaction-area">
-          <h3>Type a sentence and watch it break apart:</h3>
-          <textarea 
-            id="tokenize-input" 
-            placeholder="Enter a sentence..."
-            rows="3"
-            style="width: 100%; margin: 12px 0; border: 2px solid #e2e8f0; border-radius: 10px; padding: 12px;"
-          ></textarea>
-          <button class="primary-btn" id="tokenize-btn">Break Into Tokens</button>
-          
-          <div id="token-display" style="margin-top: 24px;"></div>
-        </div>
-        
-        <div class="insight-box" style="margin-top: 24px; display: none;" id="tokenize-insight">
-          <h3>💡 Key Insight</h3>
-          <p><strong>AI does not see sentences. It only sees pieces.</strong></p>
-          <p>Every word becomes a separate token. AI has no concept of grammar, meaning, or context — just individual word pieces.</p>
-        </div>
-        
-        <button class="primary-btn hidden" id="continue-to-6" style="margin-top: 24px;">
-          Continue to Activity 6 →
-        </button>
-      </div>
+      <div id="activity-5-content"></div>
     </section>
 
     <!-- Activity 6: Word Counts -->
@@ -99,35 +72,7 @@
         </div>
       </div>
       
-      <div id="activity-6-content">
-        <div class="think-prompt">
-          How many times does each word appear? Why would that matter to AI?
-        </div>
-        
-        <div class="interaction-area">
-          <h3>Enter a message to analyze:</h3>
-          <textarea 
-            id="count-input" 
-            placeholder="Type a spam or normal message..."
-            rows="3"
-            style="width: 100%; margin: 12px 0; border: 2px solid #e2e8f0; border-radius: 10px; padding: 12px;"
-          ></textarea>
-          <button class="primary-btn" id="count-btn">Count Words</button>
-          
-          <div id="count-display" style="margin-top: 24px;"></div>
-        </div>
-        
-        <div class="insight-box" style="margin-top: 24px; display: none;" id="count-insight">
-          <h3>💡 Understanding Word Counts</h3>
-          <p><strong>AI thinks using numbers, not words.</strong></p>
-          <p>By counting word frequency, AI converts language into mathematical data it can process. This is called <strong>vectorization</strong>.</p>
-          <p>Words that appear more often in spam (like "free", "win", "click") will have higher counts in spam messages.</p>
-        </div>
-        
-        <button class="primary-btn hidden" id="complete-hour2" style="margin-top: 24px;">
-          Complete Hour 2 →
-        </button>
-      </div>
+      <div id="activity-6-content"></div>
     </section>
 
     <!-- Hour Completion Message -->
@@ -145,13 +90,14 @@
 
   <script type="module">
     import { initActivity4 } from '../js/activities/a04_dataset.js';
+    import { initActivity5 } from '../js/activities/a05_tokenize.js';
+    import { initActivity6 } from '../js/activities/a06_counts.js';
     import { isHourUnlocked } from '../js/core/unlock.js';
 
     // Initialize first activity of hour 2
     initActivity4(document.getElementById('activity-4-content'));
 
-    // Activity 5 Logic (Tokenization)
-    let tokensShown = false;
+    // Listen for activity completions
     document.addEventListener('activityComplete', (e) => {
       const completedActivity = e.detail.activity;
       
@@ -160,13 +106,13 @@
         activity5.classList.remove('hidden');
         activity5.classList.add('fade-in');
         activity5.scrollIntoView({ behavior: 'smooth' });
-        setupActivity5();
+        initActivity5(document.getElementById('activity-5-content'));
       } else if (completedActivity === 5) {
         const activity6 = document.getElementById('activity-6');
         activity6.classList.remove('hidden');
         activity6.classList.add('fade-in');
         activity6.scrollIntoView({ behavior: 'smooth' });
-        setupActivity6();
+        initActivity6(document.getElementById('activity-6-content'));
       } else if (completedActivity === 6) {
         const completeMsg = document.getElementById('hour-complete');
         completeMsg.classList.remove('hidden');
@@ -174,105 +120,6 @@
         completeMsg.scrollIntoView({ behavior: 'smooth' });
       }
     });
-
-    function setupActivity5() {
-      const tokenizeBtn = document.getElementById('tokenize-btn');
-      const input = document.getElementById('tokenize-input');
-      const display = document.getElementById('token-display');
-      const insight = document.getElementById('tokenize-insight');
-      const continueBtn = document.getElementById('continue-to-6');
-
-      tokenizeBtn.addEventListener('click', () => {
-        const text = input.value.trim();
-        if (!text) {
-          alert('Please enter a sentence first!');
-          return;
-        }
-
-        const tokens = text.split(/\s+/);
-        
-        display.innerHTML = `
-          <h3>Tokens (${tokens.length}):</h3>
-          <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px;">
-            ${tokens.map((token, idx) => `
-              <div style="background: var(--accent); color: white; padding: 12px 20px; border-radius: 10px; font-weight: 600; animation: fadeIn 0.3s ease ${idx * 0.1}s both;">
-                ${token}
-              </div>
-            `).join('')}
-          </div>
-        `;
-
-        insight.style.display = 'block';
-        tokensShown = true;
-        continueBtn.classList.remove('hidden');
-      });
-
-      continueBtn.addEventListener('click', () => {
-        const event = new CustomEvent('activityComplete', { detail: { activity: 5 } });
-        document.dispatchEvent(event);
-      });
-    }
-
-    function setupActivity6() {
-      const countBtn = document.getElementById('count-btn');
-      const input = document.getElementById('count-input');
-      const display = document.getElementById('count-display');
-      const insight = document.getElementById('count-insight');
-      const completeBtn = document.getElementById('complete-hour2');
-
-      countBtn.addEventListener('click', () => {
-        const text = input.value.trim();
-        if (!text) {
-          alert('Please enter a message first!');
-          return;
-        }
-
-        const words = text.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/);
-        const frequency = {};
-        
-        words.forEach(word => {
-          if (word) {
-            frequency[word] = (frequency[word] || 0) + 1;
-          }
-        });
-
-        const sorted = Object.entries(frequency).sort((a, b) => b[1] - a[1]);
-
-        display.innerHTML = `
-          <h3>Word Frequency Table:</h3>
-          <div style="background: white; border-radius: 12px; padding: 20px; margin-top: 16px;">
-            <table style="width: 100%; border-collapse: collapse;">
-              <thead>
-                <tr style="border-bottom: 2px solid #e2e8f0;">
-                  <th style="text-align: left; padding: 12px; font-weight: 600;">Word</th>
-                  <th style="text-align: right; padding: 12px; font-weight: 600;">Count</th>
-                  <th style="text-align: right; padding: 12px; font-weight: 600;">Visual</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${sorted.map(([word, count]) => `
-                  <tr style="border-bottom: 1px solid #f1f5f9;">
-                    <td style="padding: 12px; font-weight: 500;">${word}</td>
-                    <td style="padding: 12px; text-align: right; font-weight: 700; color: var(--accent);">${count}</td>
-                    <td style="padding: 12px; text-align: right;">
-                      <div style="background: var(--accent); height: 8px; border-radius: 4px; width: ${(count / Math.max(...Object.values(frequency))) * 100}%; margin-left: auto;"></div>
-                    </td>
-                  </tr>
-                `).join('')}
-              </tbody>
-            </table>
-          </div>
-        `;
-
-        insight.style.display = 'block';
-        completeBtn.classList.remove('hidden');
-      });
-
-      completeBtn.addEventListener('click', () => {
-        const event = new CustomEvent('activityComplete', { detail: { activity: 6 } });
-        document.dispatchEvent(event);
-      });
-    }
 
     // Check hour unlock
     window.checkHourUnlock = function(hour) {

@@ -36,19 +36,112 @@
       </p>
     </div>
 
-    <!-- Coming Soon Message -->
-    <div class="card" style="text-align: center; padding: 60px 40px;">
-      <h2 style="font-size: 2.5rem; margin-bottom: 20px;">🚧</h2>
-      <h2>Activities Coming Soon</h2>
-      <p style="font-size: 1.1rem; color: #64748b;">
-        Hour 3 activities are currently being developed. Check back soon to learn about training models, probability, and explainability!
+    <!-- Activity 7: Feature Selection -->
+    <section class="card activity-section" id="activity-7">
+      <div class="activity-header">
+        <div class="activity-number">7</div>
+        <div class="activity-title">
+          <h2>Choosing Important Words</h2>
+          <p>Understand feature importance in machine learning</p>
+        </div>
+      </div>
+      
+      <div id="activity-7-content"></div>
+    </section>
+
+    <!-- Activity 8: Confusion Matrix -->
+    <section class="card activity-section hidden" id="activity-8">
+      <div class="activity-header">
+        <div class="activity-number">8</div>
+        <div class="activity-title">
+          <h2>When Meaning Breaks</h2>
+          <p>Discover AI's limits with sarcasm, tone, and context</p>
+        </div>
+      </div>
+      
+      <div id="activity-8-content"></div>
+    </section>
+
+    <!-- Activity 9: Training the Model -->
+    <section class="card activity-section hidden" id="activity-9">
+      <div class="activity-header">
+        <div class="activity-number">9</div>
+        <div class="activity-title">
+          <h2>Training the Model</h2>
+          <p>Watch AI learn from your training data</p>
+        </div>
+      </div>
+      
+      <div id="activity-9-content"></div>
+    </section>
+
+    <!-- Activity 10: Probability -->
+    <section class="card activity-section hidden" id="activity-10">
+      <div class="activity-header">
+        <div class="activity-number">10</div>
+        <div class="activity-title">
+          <h2>Probability, Not Certainty</h2>
+          <p>Understand why AI gives percentages, not answers</p>
+        </div>
+      </div>
+      
+      <div id="activity-10-content"></div>
+    </section>
+
+    <!-- Hour Completion Message -->
+    <div class="card hidden" id="hour-complete" style="text-align: center; padding: 60px 40px; background: linear-gradient(135deg, #fef3c7, #fde68a);">
+      <h2 style="font-size: 2.5rem; margin-bottom: 20px;">🎉</h2>
+      <h2>Hour 3 Complete!</h2>
+      <p style="font-size: 1.1rem; color: #92400e; margin: 16px 0;">
+        You've learned how AI makes probabilistic decisions based on training data.
+      </p>
+      <p style="color: #78350f; font-weight: 600; margin-top: 24px;">
+        Ask your teacher for the Hour 4 unlock code to learn about bias and ethics!
       </p>
     </div>
   </div>
 
   <script type="module">
+    import { initActivity7 } from '../js/activities/a07_features.js';
+    import { initActivity8 } from '../js/activities/a08_confusion.js';
+    import { initActivity9 } from '../js/activities/a09_train.js';
+    import { initActivity10 } from '../js/activities/a10_probability.js';
     import { isHourUnlocked } from '../js/core/unlock.js';
 
+    // Initialize first activity of hour 3
+    initActivity7(document.getElementById('activity-7-content'));
+
+    // Listen for activity completions
+    document.addEventListener('activityComplete', (e) => {
+      const completedActivity = e.detail.activity;
+      
+      if (completedActivity === 7) {
+        const activity8 = document.getElementById('activity-8');
+        activity8.classList.remove('hidden');
+        activity8.classList.add('fade-in');
+        activity8.scrollIntoView({ behavior: 'smooth' });
+        initActivity8(document.getElementById('activity-8-content'));
+      } else if (completedActivity === 8) {
+        const activity9 = document.getElementById('activity-9');
+        activity9.classList.remove('hidden');
+        activity9.classList.add('fade-in');
+        activity9.scrollIntoView({ behavior: 'smooth' });
+        initActivity9(document.getElementById('activity-9-content'));
+      } else if (completedActivity === 9) {
+        const activity10 = document.getElementById('activity-10');
+        activity10.classList.remove('hidden');
+        activity10.classList.add('fade-in');
+        activity10.scrollIntoView({ behavior: 'smooth' });
+        initActivity10(document.getElementById('activity-10-content'));
+      } else if (completedActivity === 10) {
+        const completeMsg = document.getElementById('hour-complete');
+        completeMsg.classList.remove('hidden');
+        completeMsg.classList.add('fade-in');
+        completeMsg.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Check hour unlock
     window.checkHourUnlock = function(hour) {
       if (isHourUnlocked(hour)) {
         window.location.href = `hour${hour}.html`;
